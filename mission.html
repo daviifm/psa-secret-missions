@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/missions.css">
 </head>
 <body>
+    <div id="game-container"></div>
     <script>
         const params = new URLSearchParams(window.location.search)
         const folder = params.get("folder")
@@ -19,7 +21,7 @@
         embed.setAttribute('height', '575')
         const object = document.createElement('object')
         object.appendChild(embed)
-        document.body.appendChild(object)
+        document.getElementById('game-container').appendChild(object)
     </script>
 
     <script>

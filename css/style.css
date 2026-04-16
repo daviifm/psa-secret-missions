@@ -3,3 +3,38 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 2px solid #325e36;
+    border-radius: 8px;
+    padding: 12px;
+    text-decoration: none;
+    color: White;
+}
+
+.card img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+    background-color: #2f3d30;
+}
+
+.card:hover {
+    border-color: #325e36;
+    background-color: #343f34;
+}
+
+h1 {
+    text-align: center;
+    color:white
+}
