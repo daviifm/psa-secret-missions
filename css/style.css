@@ -36,5 +36,32 @@ body {
 
 h1 {
     text-align: center;
-    color:white
+}
+
+.club {
+    text-align: center;
+    color:white;
+    font-family: sans-serif;
+    text-shadow: 
+        3px 3px 0 #00215e,
+        -3px 3px 0 #00215e,
+        3px -3px 0 #00215e,
+        -3px -3px 0 #00215e;
+}
+.penguin {
+    text-align: center;
+    color:#ffcb00;
+    font-family: sans-serif;
+    text-shadow: 
+        3px 3px 0 #00215e,
+        -3px 3px 0 #00215e,
+        3px -3px 0 #00215e,
+        -3px -3px 0 #00215e;
+}
+
+h2 {
+    text-align: center;
+    color:#dfffcb;
+    font-family: sans-serif;
+    font-size: large;
 }
