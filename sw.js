@@ -1,5 +1,6 @@
-let currentFolder = null
-let currentQuest = null
+const params = new URLSearchParams(self.location.search)
+let currentFolder = params.get('folder')
+let currentQuest = params.get('quest')
 
 self.addEventListener('message', event => {
     currentFolder = event.data.folder
