@@ -10,6 +10,7 @@ self.addEventListener('message', event => {
 })
 
 self.addEventListener('fetch', event => {
+    console.log('Fetch interceptado:', event.request.url)
     if(event.request.url.includes("/common/") || event.request.url.includes("/lang/") || event.request.url.includes("/global/")) {
         const url = event.request.url
         let newUrl = url
