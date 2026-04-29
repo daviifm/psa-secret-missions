@@ -1,6 +1,8 @@
 const params = new URLSearchParams(self.location.search)
 let currentFolder = params.get('folder')
 let currentQuest = params.get('quest')
+console.log('SW location:', self.location.href)
+console.log('SW params:', self.location.search)
 
 self.addEventListener('message', event => {
     currentFolder = event.data.folder

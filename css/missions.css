@@ -7,7 +7,7 @@ body {
 }
 
 body {
-    background-image: url('/images/psa.png');
+    background-image: url('../images/psa.png');
     background-size: cover;
     background-position: center;
 }
