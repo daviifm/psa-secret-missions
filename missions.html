@@ -17,7 +17,6 @@
     <script>
         if('serviceWorker' in navigator) {
             navigator.serviceWorker.register(`./sw.js?folder=${encodeURIComponent(folder)}&quest=${quest}`)
-                .then(registration => registration.update())
     
             if(navigator.serviceWorker.controller) {
                 loadGame()
