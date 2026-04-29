@@ -17,15 +17,16 @@
     <script>
         if('serviceWorker' in navigator) {
             navigator.serviceWorker.register(`./sw.js?folder=${encodeURIComponent(folder)}&quest=${quest}`)
-    
-            if(navigator.serviceWorker.controller) {
-                loadGame()
-            } 
-            else {
-                navigator.serviceWorker.addEventListener('controllerchange', () => {
-                loadGame()
-            })
-            }
+                .then(registration => {
+                    if(!navigator.serviceWorker.controller) {
+                        navigator.serviceWorker.addEventListener('controllerchange', () => {
+                        window.location.reload()
+                    })
+                    } 
+                    else {
+                        loadGame()
+                    }
+                })
         }
 
         function loadGame() {
