@@ -1,24 +1,47 @@
+@font-face {
+    font-family: 'Pixel'; 
+    src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
 }
 
 .card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
-    border: 2px solid #325e36;
-    border-radius: 8px;
-    padding: 12px;
     text-decoration: none;
-    color: White;
+    color: white;
+    gap: 8px;
 }
 
 .card img {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border: 3px solid #7f7f7f;
+}
+
+.launch {
+    background-color: #2d8a2d;
+    color: white;
+    font-family: 'Pixel', sans-serif;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    border: 2px solid #5cb85c;
+    box-sizing: border-box;
+}
+
+.card p {
+    text-align: center;
+    color: white;
+    margin: 7px;
 }
 
 body {
@@ -26,42 +49,36 @@ body {
     margin: 0 auto;
     padding: 20px;
     font-family: sans-serif;
-    background-color: #2f3d30;
+    background-color: #030603;
+}
+
+.card:hover .launch {
+    background-color: #1c8e03;
+    border-color: #1af16b;
+}
+
+.card:hover img {
+    opacity: 0.85;
+}
+
+.card {
+    cursor: pointer;
+    transition: transform 0.15s;
 }
 
 .card:hover {
-    border-color: #325e36;
-    background-color: #343f34;
+    transform: scale(1.03);
 }
 
 h1 {
     text-align: center;
-}
-
-.club {
-    text-align: center;
-    color:white;
-    font-family: sans-serif;
-    text-shadow: 
-        3px 3px 0 #00215e,
-        -3px 3px 0 #00215e,
-        3px -3px 0 #00215e,
-        -3px -3px 0 #00215e;
-}
-.penguin {
-    text-align: center;
-    color:#ffcb00;
-    font-family: sans-serif;
-    text-shadow: 
-        3px 3px 0 #00215e,
-        -3px 3px 0 #00215e,
-        3px -3px 0 #00215e,
-        -3px -3px 0 #00215e;
+    font-family: 'Pixel', sans-serif;
+    color: #c7fede;
 }
 
 h2 {
     text-align: center;
-    color:#dfffcb;
-    font-family: sans-serif;
-    font-size: large;
+    color:#c7fede;
+    font-family: 'Pixel', sans-serif;
+    font-size: small;
 }
