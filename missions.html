@@ -29,16 +29,30 @@
             navigator.serviceWorker.register(`./sw.js?folder=${encodeURIComponent(folder)}&quest=${quest}`)
                 .then(registration => {
                     const sw = registration.active || registration.installing || registration.waiting
-                    sw.addEventListener('statechange', function() {
-                        if(this.state === 'activated') {
-                        this.postMessage({folder, quest})
+                    const activate = (worker) => {
+                        worker.addEventListener('statechange', function() {
+                            if(this.state === 'activated') {
+                                loadGame()
+                            }
+                        })
                     }
-                    })
                     if(registration.active) {
-                        registration.active.postMessage({folder, quest})
-                    }   
+                        loadGame()
+                    } 
+                    else {
+                        activate(sw)
+                    }
                 })
-                .catch(error => console.log(error))
+        }       
+
+        function loadGame() {
+            const embed = document.createElement('embed')
+            embed.setAttribute('src', `swf/${folder}/quest/${quest}/quest.swf`)
+            embed.setAttribute('width', '910')
+            embed.setAttribute('height', '575')
+            const object = document.createElement('object')
+            object.appendChild(embed)
+            document.getElementById('game-container').appendChild(object)
         }
     </script>
 
