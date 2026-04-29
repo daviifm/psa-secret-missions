@@ -21,6 +21,7 @@ self.addEventListener('fetch', event => {
             newUrl = url.replace(/.*\/lang\//, `${self.location.origin}${basePath}swf/${currentFolder}/quest/${currentQuest}/lang/`)
         else if (url.includes("/global/"))
             newUrl = url.replace(/.*\/global\//, `${self.location.origin}${basePath}swf/${currentFolder}/global/`)
+            console.log('Nova URL global:', newUrl)
         event.respondWith(fetch(newUrl))
     }
     else {
