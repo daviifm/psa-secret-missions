@@ -18,18 +18,19 @@
         if('serviceWorker' in navigator) {
             navigator.serviceWorker.register(`./sw.js?folder=${encodeURIComponent(folder)}&quest=${quest}`)
                 .then(registration => {
+                    console.log('Registro OK:', registration)
+                    console.log('Controller:', navigator.serviceWorker.controller)
                     if(!navigator.serviceWorker.controller) {
                         navigator.serviceWorker.addEventListener('controllerchange', () => {
-                        window.location.reload()
-                    })
-                    } 
-                    else {
-                        console.log('SW ativo, carregando jogo')
-                        loadGame()
+                            window.location.reload()
+                        })
+                    } else {
+                        loadGame();
                     }
                 })
+                .catch(error => console.log('Erro no registro:', error))
         }
-
+                 
         function loadGame() {
             const ruffleScript = document.createElement('script')
             ruffleScript.src = 'ruffle/ruffle.js'
