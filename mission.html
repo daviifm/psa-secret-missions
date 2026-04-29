@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mission</title>
     <link rel="stylesheet" href="css/missions.css">
 </head>
 <body>
@@ -26,8 +26,18 @@
 
     <script>
         if('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(result => result.active.postMessage({folder, quest}))
+            navigator.serviceWorker.register('./sw.js')
+                .then(registration => {
+                    const sw = registration.active || registration.installing || registration.waiting
+                    sw.addEventListener('statechange', function() {
+                        if(this.state === 'activated') {
+                        this.postMessage({folder, quest})
+                    }
+                    })
+                    if(registration.active) {
+                        registration.active.postMessage({folder, quest})
+                    }   
+                })
                 .catch(error => console.log(error))
         }
     </script>
