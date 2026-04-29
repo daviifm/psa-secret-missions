@@ -17,23 +17,17 @@
     <script>
         if('serviceWorker' in navigator) {
             navigator.serviceWorker.register(`./sw.js?folder=${encodeURIComponent(folder)}&quest=${quest}`)
-                .then(registration => {
-                    const sw = registration.active || registration.installing || registration.waiting
-                    const activate = (worker) => {
-                        worker.addEventListener('statechange', function() {
-                            if(this.state === 'activated') {
-                                loadGame()
-                            }
-                        })
-                    }
-                    if(registration.active) {
-                        loadGame()
-                    } 
-                    else {
-                        activate(sw)
-                    }
-                })
-        }       
+                .then(registration => registration.update())
+    
+            if(navigator.serviceWorker.controller) {
+                loadGame()
+            } 
+            else {
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                loadGame()
+            })
+            }
+        }
 
         function loadGame() {
             const ruffleScript = document.createElement('script')
