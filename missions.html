@@ -36,17 +36,19 @@
         }       
 
         function loadGame() {
-            const embed = document.createElement('embed')
-            embed.setAttribute('src', `swf/${folder}/quest/${quest}/quest.swf`)
-            embed.setAttribute('width', '910')
-            embed.setAttribute('height', '575')
-            const object = document.createElement('object')
-            object.appendChild(embed)
-            document.getElementById('game-container').appendChild(object)
+            const ruffleScript = document.createElement('script')
+            ruffleScript.src = 'ruffle/ruffle.js'
+            document.body.appendChild(ruffleScript)
+            ruffleScript.onload = () => {
+                const embed = document.createElement('embed')
+                embed.setAttribute('src', `swf/${folder}/quest/${quest}/quest.swf`)
+                embed.setAttribute('width', '910')
+                embed.setAttribute('height', '575')
+                const object = document.createElement('object')
+                object.appendChild(embed)
+                document.getElementById('game-container').appendChild(object)
+            }
         }
     </script>
-
-
-    <script src="ruffle/ruffle.js"></script>
 </body>
 </html>
