@@ -1,8 +1,6 @@
 const params = new URLSearchParams(self.location.search)
 let currentFolder = params.get('folder')
 let currentQuest = params.get('quest')
-console.log('SW location:', self.location.href)
-console.log('SW params:', self.location.search)
 
 self.addEventListener('message', event => {
     currentFolder = event.data.folder
@@ -10,7 +8,6 @@ self.addEventListener('message', event => {
 })
 
 self.addEventListener('fetch', event => {
-    console.log('Fetch interceptado:', event.request.url)
     if(event.request.url.includes("/common/") || event.request.url.includes("/lang/") || event.request.url.includes("/global/")) {
         const url = event.request.url
         let newUrl = url
@@ -21,7 +18,6 @@ self.addEventListener('fetch', event => {
             newUrl = url.replace(/.*\/lang\//, `${self.location.origin}${basePath}swf/${currentFolder}/quest/${currentQuest}/lang/`)
         else if (url.includes("/global/"))
             newUrl = url.replace(/.*\/global\//, `${self.location.origin}${basePath}swf/${currentFolder}/global/`)
-            console.log('Nova URL global:', newUrl)
         event.respondWith(fetch(newUrl))
     }
     else {
