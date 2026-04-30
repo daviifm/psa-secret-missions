@@ -18,12 +18,16 @@
         if('serviceWorker' in navigator) {
             navigator.serviceWorker.register(`./sw.js?folder=${encodeURIComponent(folder)}&quest=${quest}`)
                 .then(registration => {
-                    if(registration.active) {
+                    const sendMessage = (sw) => {
+                        sw.postMessage({folder, quest})
                         loadGame()
+                    }
+                    if(registration.active) {
+                        sendMessage(registration.active)
                     } else if(registration.installing) {
                         registration.installing.addEventListener('statechange', function() {
                             if(this.state === 'activated') {
-                                loadGame()
+                                sendMessage(registration.active)
                             }
                         })
                     }

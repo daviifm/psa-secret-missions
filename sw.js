@@ -1,6 +1,10 @@
 const params = new URLSearchParams(self.location.search)
-let currentFolder = params.get('folder')
-let currentQuest = params.get('quest')
+let currentFolder = null
+let currentQuest = null
+
+self.addEventListener('activate', event => {
+    event.waitUntil(clients.claim())
+})
 
 self.addEventListener('message', event => {
     currentFolder = event.data.folder
@@ -23,8 +27,4 @@ self.addEventListener('fetch', event => {
     else {
         event.respondWith(fetch(event.request))
     }
-})
-
-self.addEventListener('activate', event => {
-    event.waitUntil(clients.claim())
 })
