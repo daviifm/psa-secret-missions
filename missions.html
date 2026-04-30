@@ -22,7 +22,6 @@
                         loadGame()
                     } else if(registration.installing) {
                         registration.installing.addEventListener('statechange', function() {
-                            console.log('State mudou para:', this.state)
                             if(this.state === 'activated') {
                                 loadGame()
                             }
@@ -31,12 +30,10 @@
                 })
         }
         function loadGame() {
-            console.log('loadGame chamado')
             const ruffleScript = document.createElement('script')
             ruffleScript.src = 'ruffle/ruffle.js'
             document.body.appendChild(ruffleScript)
             ruffleScript.onload = () => {
-                console.log('Ruffle carregado')
                 const embed = document.createElement('embed')
                 embed.setAttribute('src', `swf/${folder}/quest/${quest}/quest.swf`)
                 embed.setAttribute('width', '910')

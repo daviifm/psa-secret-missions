@@ -8,6 +8,7 @@ self.addEventListener('message', event => {
 })
 
 self.addEventListener('fetch', event => {
+    
     if(event.request.url.includes("/common/") || event.request.url.includes("/lang/") || event.request.url.includes("/global/")) {
         const url = event.request.url
         let newUrl = url
