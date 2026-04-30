@@ -18,22 +18,27 @@
         if('serviceWorker' in navigator) {
             navigator.serviceWorker.register(`./sw.js?folder=${encodeURIComponent(folder)}&quest=${quest}`)
                 .then(registration => {
+                    console.log('active:', registration.active)
+                    console.log('installing:', registration.installing)
                     if(registration.active) {
+                        console.log('Chamando loadGame via active')
                         loadGame()
                     } else {
+                        console.log('Aguardando controllerchange')
                         navigator.serviceWorker.addEventListener('controllerchange', () => {
+                            console.log('controllerchange disparou')
                             loadGame()
                         })
                     }
                 })
-                .catch(error => console.log('Erro:', error))
         }
-
         function loadGame() {
+            console.log('loadGame chamado')
             const ruffleScript = document.createElement('script')
             ruffleScript.src = 'ruffle/ruffle.js'
             document.body.appendChild(ruffleScript)
             ruffleScript.onload = () => {
+                console.log('Ruffle carregado')
                 const embed = document.createElement('embed')
                 embed.setAttribute('src', `swf/${folder}/quest/${quest}/quest.swf`)
                 embed.setAttribute('width', '910')
