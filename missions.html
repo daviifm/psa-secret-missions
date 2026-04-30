@@ -18,16 +18,14 @@
         if('serviceWorker' in navigator) {
             navigator.serviceWorker.register(`./sw.js?folder=${encodeURIComponent(folder)}&quest=${quest}`)
                 .then(registration => {
-                    console.log('active:', registration.active)
-                    console.log('installing:', registration.installing)
                     if(registration.active) {
-                        console.log('Chamando loadGame via active')
                         loadGame()
-                    } else {
-                        console.log('Aguardando controllerchange')
-                        navigator.serviceWorker.addEventListener('controllerchange', () => {
-                            console.log('controllerchange disparou')
-                            loadGame()
+                    } else if(registration.installing) {
+                        registration.installing.addEventListener('statechange', function() {
+                            console.log('State mudou para:', this.state)
+                            if(this.state === 'activated') {
+                                loadGame()
+                            }
                         })
                     }
                 })
