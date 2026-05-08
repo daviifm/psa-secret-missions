@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/missions.css">
 </head>
 <body>
+    <a id="back-button" href="index.html"></a>
     <div id="game-container"></div>
     <script>
         const params = new URLSearchParams(window.location.search)
@@ -40,13 +41,16 @@
             ruffleScript.onload = () => {
                 const embed = document.createElement('embed')
                 embed.setAttribute('src', `swf/${folder}/quest/${quest}/quest.swf`)
-                embed.setAttribute('width', '910')
-                embed.setAttribute('height', '575')
+                embed.setAttribute('width', '100%')
+                embed.setAttribute('height', '100%')
                 const object = document.createElement('object')
                 object.appendChild(embed)
                 document.getElementById('game-container').appendChild(object)
             }
         }
     </script>
+    <footer>
+        <p>Made by <a href="https://github.com/daviifm" target="_blank">daviifm</a> · Not affiliated with Disney or Club Penguin · For preservation purposes only</p>
+    </footer>
 </body>
 </html>
