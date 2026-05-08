@@ -1,6 +1,6 @@
-const params = new URLSearchParams(self.location.search)
-let currentFolder = null
-let currentQuest = null
+const urlParams = new URLSearchParams(self.location.search)
+let currentFolder = urlParams.get('folder')
+let currentQuest = urlParams.get('quest')
 
 self.addEventListener('activate', event => {
     event.waitUntil(clients.claim())
@@ -16,12 +16,14 @@ self.addEventListener('fetch', event => {
         const url = event.request.url
         let newUrl = url
         const basePath = self.location.pathname.replace('sw.js', '')
+        const folder = currentFolder || urlParams.get('folder')
+        const quest = currentQuest || urlParams.get('quest')
         if (url.includes("/common/"))
-            newUrl = url.replace(/.*\/common\//, `${self.location.origin}${basePath}swf/${currentFolder}/quest/${currentQuest}/common/`)
+            newUrl = url.replace(/.*\/common\//, `${self.location.origin}${basePath}swf/${folder}/quest/${quest}/common/`)
         else if (url.includes("/lang/"))
-            newUrl = url.replace(/.*\/lang\//, `${self.location.origin}${basePath}swf/${currentFolder}/quest/${currentQuest}/lang/`)
+            newUrl = url.replace(/.*\/lang\//, `${self.location.origin}${basePath}swf/${folder}/quest/${quest}/lang/`)
         else if (url.includes("/global/"))
-            newUrl = url.replace(/.*\/global\//, `${self.location.origin}${basePath}swf/${currentFolder}/global/`)
+            newUrl = url.replace(/.*\/global\//, `${self.location.origin}${basePath}swf/${folder}/global/`)
         event.respondWith(fetch(newUrl))
     }
     else {
